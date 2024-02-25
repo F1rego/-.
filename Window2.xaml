@@ -1,0 +1,37 @@
+﻿<Window x:Class="WpfApp20.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp20"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+
+        Title="Таблица" Height="460" Width="1400" WindowStyle="None">
+    <Grid Margin="0,0,2,0" IsHitTestVisible="True">
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="1358" AutoGenerateColumns="False" IsHitTestVisible="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Тип_операции}" Header="Название операции" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Дата_операции, StringFormat=\{0:dd.MM.yyyy\}}" Header="Дата операции"/>
+                <DataGridTextColumn Binding="{Binding Оборудование}" Header="Название оборудования" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Сотрудники}" Header="ФИО сотрудника" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Поставщики}" Header="Название поставщика" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Стоимость}" Header="Стоимость" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Описание}" Header="Описание" Width="400"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Image Source="/Images/close.png" Panel.ZIndex="1" Style="{StaticResource imgClose}" MouseDown="imgClose_MouseDown" Margin="0,6,0,0" />
+        <Button Content="Печать" Style="{StaticResource mainButton}" HorizontalAlignment="Left" Margin="1087,383,0,0" VerticalAlignment="Top" Width="93" Height="49" Click="Button_Click_1" IsEnabled="True" Foreground="#DDFFFFFF" Background="#FF3AADA1" BorderBrush="#FF3AADA1"/>
+        <Label Content="Введите название" HorizontalAlignment="Left" Margin="310,386,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textboxsearch" HorizontalAlignment="Left" Height="23" Margin="448,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Выберите год" HorizontalAlignment="Left" Margin="630,385,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboboxsearch" HorizontalAlignment="Left" Margin="758,385,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Очистить поиск" Style="{StaticResource mainButton}" HorizontalAlignment="Left" Margin="898,383,0,0" VerticalAlignment="Top" Width="143" Height="49" Click="Button_Click_12" IsEnabled="True" Foreground="#DDFFFFFF" BorderBrush="#FF3AADA1" Background="#FF3AADA1"/>
+        <TextBox x:Name="textboxRecordCount" HorizontalAlignment="Left" Height="31" Margin="1198,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+        <Button Content="Показать выборку" Style="{StaticResource mainButton}" HorizontalAlignment="Left" Margin="54,387,0,0" VerticalAlignment="Top" Width="170" Click="button1_Click14" Foreground="#DDFFFFFF" Background="#FF3AADA1" BorderBrush="#FF3AADA1" Height="55"/>
+        <TextBox x:Name="textbox11" HorizontalAlignment="Left" Height="33" Margin="37,322,0,0" TextWrapping="Wrap" Text="Потраченные средства за 2023" VerticalAlignment="Top" Width="224"/>
+        <TextBox x:Name="textbox22" HorizontalAlignment="Left" Height="27" Margin="37,355,0,0" TextWrapping="Wrap" Text="Потраченные средства за 2024" VerticalAlignment="Top" Width="224"/>
+
+    </Grid>
+
+</Window>

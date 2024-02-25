@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Оборудование">
+          <Key>
+            <PropertyRef Name="ID_Оборудования" />
+          </Key>
+          <Property Name="ID_Оборудования" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название " Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Модель" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Серийный_номер" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Статус" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Дата_покупки" Type="date" Nullable="false" />
+          <Property Name="Срок_службы" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Операции">
+          <Key>
+            <PropertyRef Name="ID_Операции" />
+          </Key>
+          <Property Name="ID_Операции" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Тип_операции" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Дата_операции" Type="date" Nullable="false" />
+          <Property Name="ID_Оборудования" Type="int" />
+          <Property Name="ID_Сотрудника" Type="int" />
+          <Property Name="ID_Поставщика" Type="int" />
+          <Property Name="Количество" Type="int" />
+          <Property Name="Стоимость" Type="int" />
+          <Property Name="Описание" Type="nvarchar(max)" />
+          <Property Name="photo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Поставщики">
+          <Key>
+            <PropertyRef Name="ID_Поставщика" />
+          </Key>
+          <Property Name="ID_Поставщика" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название_поставщика " Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Адрес" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="ID_Сотрудника" />
+          </Key>
+          <Property Name="ID_Сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Должность " Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Операции_ToTable">
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="0..1" />
+          <End Role="Операции" Type="Self.Операции" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оборудование">
+              <PropertyRef Name="ID_Оборудования" />
+            </Principal>
+            <Dependent Role="Операции">
+              <PropertyRef Name="ID_Оборудования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Операции_ToTable_1">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Операции" Type="Self.Операции" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="ID_Сотрудника" />
+            </Principal>
+            <Dependent Role="Операции">
+              <PropertyRef Name="ID_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Операции_ToTable_2">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Операции" Type="Self.Операции" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="ID_Поставщика" />
+            </Principal>
+            <Dependent Role="Операции">
+              <PropertyRef Name="ID_Поставщика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Оборудование" EntityType="Self.Оборудование" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Операции" EntityType="Self.Операции" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Поставщики" EntityType="Self.Поставщики" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Операции_ToTable" Association="Self.FK_Операции_ToTable">
+            <End Role="Оборудование" EntitySet="Оборудование" />
+            <End Role="Операции" EntitySet="Операции" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Операции_ToTable_1" Association="Self.FK_Операции_ToTable_1">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Операции" EntitySet="Операции" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Операции_ToTable_2" Association="Self.FK_Операции_ToTable_2">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Операции" EntitySet="Операции" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Оборудование">
+          <Key>
+            <PropertyRef Name="ID_Оборудования" />
+          </Key>
+          <Property Name="ID_Оборудования" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Модель" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Серийный_номер" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Статус" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Дата_покупки" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Срок_службы" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Операции" Relationship="Self.FK_Операции_ToTable" FromRole="Оборудование" ToRole="Операции" />
+        </EntityType>
+        <EntityType Name="Операции">
+          <Key>
+            <PropertyRef Name="ID_Операции" />
+          </Key>
+          <Property Name="ID_Операции" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Тип_операции" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Дата_операции" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_Оборудования" Type="Int32" />
+          <Property Name="ID_Сотрудника" Type="Int32" />
+          <Property Name="ID_Поставщика" Type="Int32" />
+          <Property Name="Количество" Type="Int32" />
+          <Property Name="Стоимость" Type="Int32" />
+          <Property Name="Описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Оборудование" Relationship="Self.FK_Операции_ToTable" FromRole="Операции" ToRole="Оборудование" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Операции_ToTable_1" FromRole="Операции" ToRole="Сотрудники" />
+          <NavigationProperty Name="Поставщики" Relationship="Self.FK_Операции_ToTable_2" FromRole="Операции" ToRole="Поставщики" />
+        </EntityType>
+        <EntityType Name="Поставщики">
+          <Key>
+            <PropertyRef Name="ID_Поставщика" />
+          </Key>
+          <Property Name="ID_Поставщика" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_поставщика_" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Операции" Relationship="Self.FK_Операции_ToTable_2" FromRole="Поставщики" ToRole="Операции" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="ID_Сотрудника" />
+          </Key>
+          <Property Name="ID_Сотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Должность_" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Операции" Relationship="Self.FK_Операции_ToTable_1" FromRole="Сотрудники" ToRole="Операции" />
+        </EntityType>
+        <Association Name="FK_Операции_ToTable">
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="0..1" />
+          <End Role="Операции" Type="Self.Операции" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оборудование">
+              <PropertyRef Name="ID_Оборудования" />
+            </Principal>
+            <Dependent Role="Операции">
+              <PropertyRef Name="ID_Оборудования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Операции_ToTable_1">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Операции" Type="Self.Операции" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="ID_Сотрудника" />
+            </Principal>
+            <Dependent Role="Операции">
+              <PropertyRef Name="ID_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Операции_ToTable_2">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Операции" Type="Self.Операции" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="ID_Поставщика" />
+            </Principal>
+            <Dependent Role="Операции">
+              <PropertyRef Name="ID_Поставщика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Оборудование" EntityType="Self.Оборудование" />
+          <EntitySet Name="Операции" EntityType="Self.Операции" />
+          <EntitySet Name="Поставщики" EntityType="Self.Поставщики" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+          <AssociationSet Name="FK_Операции_ToTable" Association="Self.FK_Операции_ToTable">
+            <End Role="Оборудование" EntitySet="Оборудование" />
+            <End Role="Операции" EntitySet="Операции" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Операции_ToTable_1" Association="Self.FK_Операции_ToTable_1">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Операции" EntitySet="Операции" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Операции_ToTable_2" Association="Self.FK_Операции_ToTable_2">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Операции" EntitySet="Операции" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities5">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Оборудование">
+            <EntityTypeMapping TypeName="Model.Оборудование">
+              <MappingFragment StoreEntitySet="Оборудование">
+                <ScalarProperty Name="ID_Оборудования" ColumnName="ID_Оборудования" />
+                <ScalarProperty Name="Название_" ColumnName="Название " />
+                <ScalarProperty Name="Модель" ColumnName="Модель" />
+                <ScalarProperty Name="Серийный_номер" ColumnName="Серийный_номер" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Дата_покупки" ColumnName="Дата_покупки" />
+                <ScalarProperty Name="Срок_службы" ColumnName="Срок_службы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Операции">
+            <EntityTypeMapping TypeName="Model.Операции">
+              <MappingFragment StoreEntitySet="Операции">
+                <ScalarProperty Name="ID_Операции" ColumnName="ID_Операции" />
+                <ScalarProperty Name="Тип_операции" ColumnName="Тип_операции" />
+                <ScalarProperty Name="Дата_операции" ColumnName="Дата_операции" />
+                <ScalarProperty Name="ID_Оборудования" ColumnName="ID_Оборудования" />
+                <ScalarProperty Name="ID_Сотрудника" ColumnName="ID_Сотрудника" />
+                <ScalarProperty Name="ID_Поставщика" ColumnName="ID_Поставщика" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Поставщики">
+            <EntityTypeMapping TypeName="Model.Поставщики">
+              <MappingFragment StoreEntitySet="Поставщики">
+                <ScalarProperty Name="ID_Поставщика" ColumnName="ID_Поставщика" />
+                <ScalarProperty Name="Название_поставщика_" ColumnName="Название_поставщика " />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудники">
+            <EntityTypeMapping TypeName="Model.Сотрудники">
+              <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="ID_Сотрудника" ColumnName="ID_Сотрудника" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Должность_" ColumnName="Должность " />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
