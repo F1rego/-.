@@ -52,11 +52,12 @@ namespace WpfApp20
             textlogin1.Visibility = Visibility.Collapsed;
             textlogin.Focus();
         }
-
-        private void CloseApplication(object sender, MouseButtonEventArgs e)
+         private void CloseApplication(object sender, MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
         }
+
+       
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
