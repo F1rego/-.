@@ -15,11 +15,11 @@
         <Button x:Name="button4" Style="{StaticResource mainButton}" Content="Очистить" HorizontalAlignment="Left" Margin="510,325,0,0" VerticalAlignment="Top" Width="233" Height="51" Click="button4_Click" Foreground="#DDFFFFFF" Background="#FF3AADA1" BorderBrush="#FF3AADA1"/>
         <Button x:Name="button1" Style="{StaticResource mainButton}" Content="Вернуться назад" HorizontalAlignment="Left" Margin="10,372,0,0" VerticalAlignment="Top" Width="153" Height="60" Click="button1_Click" Foreground="#DDFFFFFF" Background="#FF3AADA1" BorderBrush="#FF3AADA1"/>
         <TextBox x:Name="textbox1" HorizontalAlignment="Left" Height="40" Margin="273,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
-        <Label Content="Название" HorizontalAlignment="Left" Margin="192,60,0,0" VerticalAlignment="Top"/>
-        <Label Content="Адрес" HorizontalAlignment="Left" Margin="192,133,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textbox2" HorizontalAlignment="Left" Height="40" Margin="273,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
         <Label Content="Телефон" HorizontalAlignment="Left" Margin="192,204,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textbox3" HorizontalAlignment="Left" Height="40" Margin="273,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
         <Image Source="/Images/close.png" Grid.Column="1" Panel.ZIndex="1" Style="{StaticResource imgClose}" MouseDown="imgClose_MouseDown" />
+<Label Content="Название" HorizontalAlignment="Left" Margin="192,60,0,0" VerticalAlignment="Top"/>
+        <Label Content="Адрес" HorizontalAlignment="Left" Margin="192,133,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
