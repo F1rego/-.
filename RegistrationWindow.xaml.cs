@@ -32,19 +32,17 @@ namespace WpfApp20
             InitializeComponent(); 
         }
 
-        private void textlogin_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            textlogin.Visibility = Visibility.Collapsed;
-            txtEmail.Focus();
-        }
-
         private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
         {
             string passwordText = textPassword.Text;
             textPassword.Visibility = Visibility.Collapsed;
             passwordBox.Focus();
         }
-        
+        private void textlogin_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            textlogin.Visibility = Visibility.Collapsed;
+            txtEmail.Focus();
+        }
         private void textlogin1_MouseDown(object sender, MouseButtonEventArgs e)
         {
             textlogin1.Visibility = Visibility.Collapsed;
