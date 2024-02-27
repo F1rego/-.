@@ -60,10 +60,7 @@ namespace WpfApp20
             dataGrid.ItemsSource = query.ToList();
         }
 
-        private void imgClose_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Close();
-        }
+    
         private void button1_Click14(object sender, RoutedEventArgs e)
         {
 
@@ -90,6 +87,10 @@ namespace WpfApp20
                     textbox22.Text = $"Потраченные средства за 2024: {result2024 ?? "0"}";
                 }
             }
+        }
+         private void imgClose_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Close();
         }
         private void UpdateData()
         {
